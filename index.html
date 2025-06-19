@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>镜片录入</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="/lens_entry/">镜片录入</a></li>
+
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <h1>镜片录入</h1>
+            <button type="button" id="batch-upload">批量录入</button>
+
+            <form id="lens-entry-form">
+                <div class="lens-entry">
+                    <label for="product-name-0">品名:</label>
+                    <select id="product-name-0" name="product-name" required></select>
+
+                    <label for="spherical-0">球镜度数:</label>
+                    <input type="text" id="spherical-0" name="spherical" required>
+
+                    <label for="cylinder-0">柱镜度数:</label>
+                    <input type="text" id="cylinder-0" name="cylinder" required>
+
+                    <label for="quantity-0">数量:</label>
+                    <input type="number" id="quantity-0" name="quantity" value="1" min="1" required>
+                </div>
+                <button type="button" id="add-lens">新增条目</button>
+                <button type="submit">提交</button>
+            </form>
+            <button type="button" id="view-qrcodes">查看二维码图片</button>
+            <div id="results" style="display: none;"></div>
+        </main>
+    </div>
+
+    <!-- 批量录入模态窗口 -->
+    <div id="modal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">批量录入</h5>
+                    <button type="button" id="excel">excel导入</button>
+                </div>
+
+                <div class="modal-body">
+                    <label for="batch-product-name">品名:</label>
+                    <select id="batch-product-name"></select>
+                    <div id="batch-grid" class="batch-grid"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" id="batch-submit" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 查看二维码图片的模态窗口 -->
+    <div id="view-modal" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">二维码图片</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="qrcode-images"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" id="print-all-qrcodes" class="btn btn-primary">打印</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="lens-entry.js"></script>
+    <script src="QRcode.js"></script>
+    <script src="QRcode1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
